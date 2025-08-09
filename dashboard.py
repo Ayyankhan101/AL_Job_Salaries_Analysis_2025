@@ -66,8 +66,11 @@ st.title("Data Science Salary Analysis and Prediction")
 # Data Overview
 st.header("Data Overview")
 st.write(f"Dataset shape: {df.shape}")
-st.write("### First 5 rows:")
-st.dataframe(df.head())
+st.write("### First 1000 rows:")
+st.dataframe(df.head(1000))
+
+st.write("### last 1000 rows:")
+st.dataframe(df.tail(1000))
 
 with st.expander("See full data profiling"):
     st.write("### Data types and missing values:")
@@ -82,17 +85,17 @@ with st.expander("Explore data distributions and trends"):
     # Distribution of Salaries
     st.subheader("Distribution of Salaries in USD")
     fig, ax = plt.subplots(figsize=(12, 6))
-    sns.histplot(df_cleaned['salary_in_usd'], bins=50, kde=True, ax=ax)
+    sns.histplot(df_cleaned['salary_in_usd'], bins=50, kde=True, ax=ax, color='blue', stat='density', edgecolor='black')
     ax.set_title('Distribution of Salaries in USD', fontsize=16)
     ax.set_xlabel('Salary in USD', fontsize=14)
-    ax.set_ylabel('Count', fontsize=14)
+    ax.set_ylabel('Density', fontsize=14)
     st.pyplot(fig)
 
     # Salary by Experience Level
     st.subheader("Salary Distribution by Experience Level")
     fig, ax = plt.subplots(figsize=(12, 6))
     order = ['EN', 'MI', 'SE', 'EX']
-    sns.boxplot(x='experience_level', y='salary_in_usd', data=df_cleaned, order=order, ax=ax)
+    sns.boxplot(x='experience_level', y='salary_in_usd', data=df_cleaned, order=order, ax=ax, palette='Set2', color='lightblue')
     ax.set_title('Salary Distribution by Experience Level', fontsize=16)
     ax.set_xlabel('Experience Level', fontsize=14)
     ax.set_ylabel('Salary in USD', fontsize=14)
@@ -103,7 +106,7 @@ with st.expander("Explore data distributions and trends"):
     st.subheader("Salary Distribution by Job Family")
     fig, ax = plt.subplots(figsize=(14, 8))
     order = df_cleaned.groupby('job_family')['salary_in_usd'].median().sort_values(ascending=False).index
-    sns.boxplot(x='job_family', y='salary_in_usd', data=df_cleaned, order=order, ax=ax)
+    sns.boxplot(x='job_family', y='salary_in_usd', data=df_cleaned, order=order, ax=ax, palette='Set2', color='lightgreen', width=0.8, fliersize=0)
     ax.set_title('Salary Distribution by Job Family', fontsize=16)
     ax.set_xlabel('Job Family', fontsize=14)
     ax.set_ylabel('Salary in USD', fontsize=14)
@@ -113,7 +116,7 @@ with st.expander("Explore data distributions and trends"):
     # Salary Trend by Year
     st.subheader("Median Salary Trend by Year")
     fig, ax = plt.subplots(figsize=(12, 6))
-    sns.lineplot(x='work_year', y='salary_in_usd', data=df_cleaned, estimator='median', errorbar=None, marker='o', ax=ax)
+    sns.lineplot(x='work_year', y='salary_in_usd', data=df_cleaned, estimator='median', errorbar=None, marker='o', ax=ax, color='purple', linewidth=2, markersize=8)
     ax.set_title('Median Salary Trend by Year', fontsize=16)
     ax.set_xlabel('Year', fontsize=14)
     ax.set_ylabel('Median Salary in USD', fontsize=14)
