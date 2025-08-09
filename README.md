@@ -4,11 +4,18 @@
 
 This project analyzes a dataset of data science salaries to uncover insights into compensation trends and builds a predictive model to estimate salaries based on various factors. The analysis explores how factors like experience level, job title, company location, and work year influence salaries in the data science field.
 
-The entire analysis and model development process is documented in the `Salary_Analysis_and_Prediction.ipynb` Jupyter Notebook.
+This repository includes a Jupyter Notebook with the complete analysis and a Streamlit dashboard for interactive exploration.
+
+## Project Structure
+
+- `salaries.csv.gz`: Compressed dataset containing salary information.
+- `Salary_Analysis_and_Prediction.ipynb`: Jupyter Notebook with the detailed analysis.
+- `dashboard.py`: Streamlit application for interactive analysis and salary prediction.
+- `requirements.txt`: A list of required Python packages.
 
 ## Dataset
 
-The dataset used for this analysis is `salaries.csv`, which contains information about data science jobs and their corresponding salaries. The key columns in the dataset are:
+The dataset used for this analysis is `salaries.csv.gz`, which contains information about data science jobs and their corresponding salaries. The key columns in the dataset are:
 
 *   `work_year`: The year the salary was paid.
 *   `experience_level`: The experience level of the employee (e.g., Entry-level, Mid-level, Senior-level, Executive-level).
@@ -27,10 +34,14 @@ The dataset used for this analysis is `salaries.csv`, which contains information
 To run this project, you need Python and several libraries. You can install the necessary dependencies using pip:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn jupyterlab
+pip install -r requirements.txt
 ```
 
 ## Usage
+
+There are two ways to explore this project:
+
+### 1. Jupyter Notebook
 
 1.  Clone or download this repository to your local machine.
 2.  Navigate to the project directory in your terminal.
@@ -40,11 +51,20 @@ pip install pandas numpy matplotlib seaborn scikit-learn jupyterlab
     ```
 4.  Open the `Salary_Analysis_and_Prediction.ipynb` notebook and run the cells to see the analysis and results.
 
+### 2. Streamlit Dashboard
+
+1.  Make sure you have installed the required packages from `requirements.txt`.
+2.  In your terminal, navigate to the project directory and run the following command:
+    ```bash
+    streamlit run dashboard.py
+    ```
+3.  This will open the interactive dashboard in your web browser.
+
 ## Project Workflow
 
 The project follows these main steps:
 
-1.  **Data Loading and Exploration**: The `salaries.csv` dataset is loaded, and an initial exploration is performed to understand its structure, data types, and basic statistics.
+1.  **Data Loading and Exploration**: The `salaries.csv.gz` dataset is loaded, and an initial exploration is performed to understand its structure, data types, and basic statistics.
 2.  **Data Cleaning and Feature Engineering**:
     *   Duplicate records are removed to ensure data quality.
     *   New features are created to aid the analysis and modeling process:
